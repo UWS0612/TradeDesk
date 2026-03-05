@@ -216,10 +216,11 @@
 </style>
 </head>
 <body>
+<a href="index.html" style="position:fixed;top:14px;left:14px;z-index:9999;padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);text-decoration:none;color:#f3f3f3;font:600 12px system-ui">← Back to TradeDesk</a>>
 <nav>
   <div class="container nav-inner">
     <a href="index.html" class="brand">
-      <img src="uacbolt.png" alt="Underwood Admin Co logo" class="brand-logo" />
+      <img src="assets/td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
       <div class="brand-copy">
         <strong>TradeDesk</strong>
         <span>by Underwood Admin Co</span>
@@ -238,7 +239,7 @@
     <div class="section-head reveal visible">
       <div class="mono muted">Enquiry</div>
       <h1>Tell me how you work.</h1>
-      <p class="lede muted">The better the enquiry, the easier it is to tell whether TradeDesk fits your business and what should sit inside the base system versus quoted custom work.</p>
+      <p class="lede muted">Use this form to send a direct enquiry about TradeDesk. Provide a few business details and what you need the system to handle.</p>
     </div>
   </div>
 </section>
@@ -247,9 +248,45 @@
   <div class="container form-grid">
     <div class="enquiry-card reveal visible">
       <div class="mono muted">Lead details</div>
-      <h2 style="margin:12px 0 16px;">Start the conversation properly.</h2>
-      <p class="muted" style="margin-bottom:20px;">Fill this out, then hit the button to open your email with a prebuilt enquiry draft. That keeps the process simple without needing a backend.</p>
+      <h2 style="margin:12px 0 16px;">Send an enquiry</h2>
+      <p class="muted" style="margin-bottom:20px;">Fill out the form below and it will open your email app with a drafted message, ready to send.</p>
       <form id="enquiryForm" class="form-fields">
+<!-- TD_PREFILL_FIELDS -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px">
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">Intent</label>
+    <select name="intent" id="intent" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3">
+      <option value="Buy SKU">Buy SKU</option>
+      <option value="Tailored build">Tailored build</option>
+      <option value="Not sure">Not sure</option>
+    </select>
+  </div>
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">Preferred contact method</label>
+    <select name="contact_method" id="contact_method" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3">
+      <option value="Call">Call</option>
+      <option value="Email">Email</option>
+      <option value="SMS">SMS</option>
+    </select>
+  </div>
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">Trade / domain</label>
+    <input name="trade" id="trade" placeholder="e.g., Plumbing, Electrical, Carpentry" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
+  </div>
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">State</label>
+    <input name="state" id="state" placeholder="e.g., SA, VIC, NSW" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
+  </div>
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">Business name</label>
+    <input name="business" id="business" placeholder="" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
+  </div>
+  <div style="grid-column:span 6">
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">ABN (optional)</label>
+    <input name="abn" id="abn" placeholder="" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
+  </div>
+</div>
+
         <label>Full name<input name="name" placeholder="Your name" required /></label>
         <label>Business name<input name="business" placeholder="Business name" /></label>
         <label>Email<input type="email" name="email" placeholder="you@example.com" required /></label>
@@ -264,7 +301,7 @@
         <label>What should the system handle?<textarea name="needs" placeholder="Quotes, invoices, jobs, reports, stock, customer flow, checklists, recurring servicing, etc."></textarea></label>
         <label>Budget / readiness<textarea name="budget" placeholder="Ready now, comparing options, need pricing clarity, etc."></textarea></label>
         <div class="cta-row" style="margin-top:8px;">
-          <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Build enquiry email</button>
+          <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Open enquiry email</button>
           <a class="btn-secondary" href="mailto:Kalebwalding17@gmail.com?subject=TradeDesk%20Enquiry">Plain email instead</a>
         </div>
       </form>
@@ -273,7 +310,7 @@
 
     <div class="enquiry-card reveal visible">
       <div class="mono muted">Direct contact</div>
-      <h2 style="margin:12px 0 16px;">Prefer direct contact?</h2>
+      <h2 style="margin:12px 0 16px;">Contact details</h2>
       <ul class="tick-list">
         <li>Email: Kalebwalding17@gmail.com</li>
         <li>Phone: 0403 220 727</li>
@@ -281,15 +318,15 @@
         <li>ABN: 77 529 724 527</li>
       </ul>
       <div style="height:20px;"></div>
-      <div class="mono muted">What helps most</div>
+      <div class="mono muted">Include the basics</div>
       <ul class="tick-list" style="margin-top:14px;">
         <li>Your trade and business type</li>
         <li>What you use now</li>
         <li>What is frustrating you</li>
         <li>What you want automated or cleaned up</li>
-        <li>Whether you need a current trade build or another domain assessed</li>
+        <li>The type of system you want</li>
       </ul>
-      <p class="inline-note">Base public price: <strong style="color:var(--white);">AUD $1,450</strong> per standard TradeDesk system. Extra custom work is quoted separately where needed.</p>
+      <p class="inline-note">Standard TradeDesk systems start from <strong style="color:var(--white);">AUD $1,450</strong>.</p>
     </div>
   </div>
 </section>
@@ -298,13 +335,13 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="mono muted">What happens next</div>
-      <h2>Simple process. No nonsense.</h2>
+      <h2>What happens after you enquire</h2>
     </div>
     <div class="steps reveal">
-      <div class="step"><div class="num">01</div><h3>You send the enquiry</h3><p>Trade, workflow, pain points, and what you need the system to handle.</p></div>
-      <div class="step"><div class="num">02</div><h3>Fit gets reviewed</h3><p>You get a straight answer on whether the base system fits and what sits outside normal scope.</p></div>
-      <div class="step"><div class="num">03</div><h3>Scope gets clarified</h3><p>Price stays simple if the fit is clean. Extra work gets quoted separately where required.</p></div>
-      <div class="step"><div class="num">04</div><h3>System gets delivered</h3><p>Once agreed and paid, the delivered system is handed over for your internal business use.</p></div>
+      <div class="step"><div class="num">01</div><h3>You send the enquiry</h3><p>Send through your trade, current admin setup, and what you want the system to do.</p></div>
+      <div class="step"><div class="num">02</div><h3>Initial review</h3><p>Your enquiry is reviewed and the best next step is identified.</p></div>
+      <div class="step"><div class="num">03</div><h3>Pricing and scope</h3><p>If needed, pricing and any custom scope are clarified before anything moves ahead.</p></div>
+      <div class="step"><div class="num">04</div><h3>Delivery</h3><p>Once confirmed, your system is prepared and delivered for your business use.</p></div>
     </div>
   </div>
 </section>
@@ -312,8 +349,8 @@
 <footer class="footer">
   <div class="container footer-box reveal visible">
     <div class="mono muted">TradeDesk by Underwood Admin Co</div>
-    <h2>Send the details. Let’s see if it fits.</h2>
-    <p class="footer-lead">If the admin friction is real, there is no reason to keep feeding software rent first and thinking later.</p>
+    <h2>Ready to enquire?</h2>
+    <p class="footer-lead">Send through the details and start the conversation.</p>
     <div class="cta-row" style="justify-content:center;"><a class="btn-secondary" href="index.html">Back to home</a><a class="btn-secondary" href="overview.html">Read the overview</a></div>
   </div>
 </footer>
@@ -357,6 +394,59 @@ Budget / Readiness:
 ${data.get('budget') || ''}`);
     window.location.href = `mailto:Kalebwalding17@gmail.com?subject=${subject}&body=${body}`;
   });
+</script>
+
+
+<script id="TD_GEN_EMAIL">
+(function(){
+  const EMAIL = "Kalebwalding17@gmail.com";
+  function v(id){ const el=document.getElementById(id)||document.querySelector('[name="'+id+'"]'); return el?(el.value||'').trim():''; }
+  function buildMailto(){
+    const subject = 'TradeDesk enquiry';
+    const lines = [
+      'Hi Kaleb,',
+      '',
+      'I want to: ' + v('intent'),
+      '',
+      'Trade / domain: ' + v('trade'),
+      'State: ' + v('state'),
+      '',
+      'Buyer details',
+      '- Full name: ' + v('name'),
+      '- Business name: ' + v('business'),
+      '- ABN (optional): ' + v('abn'),
+      '',
+      'Contact',
+      '- Preferred method: ' + v('contact_method'),
+      '- Mobile: ' + v('phone'),
+      '- Email: ' + v('email'),
+      '',
+      'Notes / requirements:',
+      v('message'),
+      '',
+      '----',
+      'Sent from the TradeDesk enquiry page'
+    ];
+    const body = lines.join('\n');
+    return 'mailto:' + encodeURIComponent(EMAIL) +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+  }
+  const form = document.querySelector('form');
+  if(!form) return;
+  if(document.getElementById('genEmailBtn')) return;
+
+  const btn = document.createElement('a');
+  btn.id = 'genEmailBtn';
+  btn.href = '#';
+  btn.textContent = 'Generate email (prefilled)';
+  btn.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;margin-left:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);text-decoration:none;font-weight:700;color:#f3f3f3;font-size:14px';
+  btn.addEventListener('click', function(e){ e.preventDefault(); window.location.href = buildMailto(); });
+
+  const submit = form.querySelector('button[type="submit"], input[type="submit"]');
+  if(submit && submit.parentElement) submit.parentElement.appendChild(btn);
+  else form.appendChild(btn);
+})();
 </script>
 
 </body>

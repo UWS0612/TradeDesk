@@ -10,22 +10,26 @@
     --bg: #040404;
     --panel: #0d0d0d;
     --panel-2: #121212;
+    --card: #111111;
     --text: #c2c2c2;
     --muted: #8a8a8a;
     --dim: #5f5f5f;
     --heading: #f3f3f3;
     --white: #ffffff;
     --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
     --accent: #1ddfdb;
     --accent-strong: #12cfc9;
     --accent-soft: rgba(29,223,219,0.12);
     --accent-2: #ff974d;
+    --accent-2-soft: rgba(255,151,77,0.12);
     --shadow: 0 18px 40px rgba(0,0,0,0.35);
     --glow: 0 0 0 1px rgba(29,223,219,0.08), 0 0 40px rgba(29,223,219,0.08);
     --font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
     --head: Georgia, "Times New Roman", serif;
     --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
   }
+
   html { scroll-behavior: smooth; }
   body {
     background:
@@ -38,350 +42,1356 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
   img { max-width: 100%; display: block; }
   a { color: inherit; }
+
   .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
   .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
   .muted { color: var(--muted); }
+
   nav {
-    position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     background: linear-gradient(180deg, rgba(4,4,4,0.92), rgba(4,4,4,0.82));
     border-bottom: 1px solid rgba(29,223,219,0.14);
     box-shadow: 0 10px 24px rgba(0,0,0,0.22);
   }
-  .nav-inner { min-height: 78px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-  .brand { display:inline-flex; align-items:center; gap:14px; text-decoration:none; }
-  .brand-logo { width:42px; height:42px; object-fit:contain; filter: drop-shadow(0 0 10px rgba(29,223,219,0.18)); }
-  .brand-copy strong { display:block; color:var(--heading); font-size:1rem; font-weight:700; }
-  .brand-copy span { display:block; color:var(--accent); font-size:0.82rem; }
-  .nav-links { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
-  .nav-links a { text-decoration:none; color:var(--muted); font-size:0.92rem; transition: .18s ease; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta { padding:10px 16px; border:1px solid rgba(29,223,219,0.3); border-radius:6px; color:var(--white)!important; background:rgba(29,223,219,0.08); }
-  .nav-cta:hover { border-color: rgba(29,223,219,0.5); background: rgba(29,223,219,0.14); }
-  h1,h2,h3,h4 { color:var(--heading); font-family: var(--head); font-weight:400; }
-  .hero {
-    position: relative; min-height: 92svh; display:flex; align-items:center; overflow:hidden;
-    border-bottom:1px solid rgba(29,223,219,0.10);
+
+  .nav-inner {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
   }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(29,223,219,0.18));
+  }
+
+  .brand-copy strong {
+    display: block;
+    color: var(--heading);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .brand-copy span {
+    display: block;
+    color: var(--accent);
+    font-size: 0.82rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.92rem;
+    transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    padding: 10px 16px;
+    border: 1px solid rgba(29,223,219,0.3);
+    border-radius: 6px;
+    color: var(--white) !important;
+    background: rgba(29,223,219,0.08);
+  }
+
+  .nav-cta:hover {
+    border-color: rgba(29,223,219,0.5);
+    background: rgba(29,223,219,0.14);
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(29,223,219,0.10);
+    overflow: hidden;
+  }
+
   .hero::before {
-    content:""; position:absolute; inset:0;
-    background: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size:52px 52px;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 52px 52px;
     mask-image: radial-gradient(circle at center, black 18%, transparent 74%);
     -webkit-mask-image: radial-gradient(circle at center, black 18%, transparent 74%);
-    pointer-events:none;
+    pointer-events: none;
   }
+
   .hero::after {
-    content:""; position:absolute; inset:auto -10% -20% auto; width:560px; height:560px;
-    background: radial-gradient(circle, rgba(29,223,219,0.10), transparent 65%); pointer-events:none;
+    content: "";
+    position: absolute;
+    inset: auto -10% -20% auto;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(29,223,219,0.10), transparent 65%);
+    pointer-events: none;
   }
-  .hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; padding:80px 0; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+    padding: 80px 0;
+  }
+
   .eyebrow {
-    display:inline-flex; padding:7px 12px; border:1px solid rgba(29,223,219,0.18); border-radius:999px;
-    color:var(--accent); background:var(--accent-soft); margin-bottom:24px;
+    display: inline-flex;
+    padding: 7px 12px;
+    border: 1px solid rgba(29,223,219,0.18);
+    border-radius: 999px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    margin-bottom: 24px;
   }
-  h1 { font-size: clamp(3rem, 7vw, 6rem); line-height: .98; letter-spacing:-0.035em; margin-bottom:24px; text-wrap:balance; }
-  .hero-lead { font-size: clamp(1.06rem, 2vw, 1.24rem); max-width: 44rem; }
-  .hero-points { list-style:none; margin:28px 0 34px; display:grid; gap:12px; }
-  .hero-points li, .tick-list li { position:relative; padding-left:22px; }
-  .hero-points li::before, .tick-list li::before { content:"✓"; position:absolute; left:0; color:var(--accent); }
-  .cta-row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-  .btn-primary, .btn-secondary {
-    display:inline-flex; align-items:center; justify-content:center; min-height:54px; padding:0 26px;
-    text-decoration:none; border-radius:8px; font-weight:700; transition:.18s ease;
+
+  h1, h2, h3, h4 {
+    color: var(--heading);
+    font-family: var(--head);
+    font-weight: 400;
   }
-  .btn-primary { background: linear-gradient(180deg, var(--accent), var(--accent-strong)); color:#031313; box-shadow:0 10px 24px rgba(29,223,219,0.18); }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow:0 14px 30px rgba(29,223,219,0.24); }
-  .btn-secondary { border:1px solid rgba(29,223,219,0.24); color:var(--white); background:rgba(29,223,219,0.05); }
-  .btn-secondary:hover { transform: translateY(-2px); border-color: rgba(29,223,219,0.45); background: rgba(29,223,219,0.10); }
-  .hero-card, .panel, .card, .pricing-main, .pricing-side, .comparison-wrap, .support-card, .faq-item, .feature-card, .enquiry-card {
-    border-radius:18px;
+
+  h1 {
+    font-size: clamp(3.1rem, 7vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 26px;
+    max-width: 9.5ch;
+    text-wrap: balance;
   }
+
+  .hero-lead {
+    font-size: clamp(1.08rem, 2vw, 1.28rem);
+    color: var(--text);
+    max-width: 44rem;
+  }
+
+  .hero-points {
+    list-style: none;
+    margin: 30px 0 36px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .hero-points li {
+    padding-left: 24px;
+    position: relative;
+    color: var(--text);
+  }
+
+  .hero-points li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 0 26px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+    color: #031313;
+    box-shadow: 0 10px 24px rgba(29,223,219,0.18);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(29,223,219,0.24);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(29,223,219,0.24);
+    color: var(--white);
+    background: rgba(29,223,219,0.05);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(29,223,219,0.45);
+    background: rgba(29,223,219,0.10);
+  }
+
+  .hero-note {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
   .hero-card {
-    background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0));
-    border:1px solid rgba(29,223,219,0.16); padding:28px; box-shadow: var(--shadow), var(--glow);
+    background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0.00));
+    border: 1px solid rgba(29,223,219,0.16);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: var(--shadow), var(--glow);
   }
+
   .hero-logo-wrap {
     background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,151,77,0.03));
-    border:1px solid rgba(29,223,219,0.16); border-radius:14px; padding:26px; margin-bottom:22px;
-    display:flex; align-items:center; justify-content:center; min-height:300px;
+    border: 1px solid rgba(29,223,219,0.16);
+    border-radius: 14px;
+    padding: 26px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
   }
-  .hero-logo { width:min(100%, 380px); height:auto; object-fit:contain; filter: drop-shadow(0 0 18px rgba(29,223,219,0.12)); }
-  .price-panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border:1px solid rgba(29,223,219,0.14); border-radius:14px; padding:24px; }
-  .price-kicker { color:var(--accent); margin-bottom:10px; }
-  .price-value { font-size: clamp(2.3rem, 5vw, 4rem); line-height:1; color:var(--white); font-weight:800; letter-spacing:-0.04em; margin-bottom:12px; }
-  .price-list, .tick-list { list-style:none; display:grid; gap:10px; }
-  section { padding: 100px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
-  .section-head { max-width: 780px; margin-bottom: 54px; }
-  .section-head h2 { font-size: clamp(2.1rem, 4vw, 3.5rem); margin: 14px 0 16px; letter-spacing:-0.03em; }
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
-  .three-col { display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; }
-  .panel, .card, .feature-card, .enquiry-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
-    border:1px solid var(--border); padding:28px;
+
+  .hero-logo {
+    width: min(100%, 380px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 18px rgba(29,223,219,0.12));
   }
+
+  .price-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    border: 1px solid rgba(29,223,219,0.14);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .price-kicker {
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .price-value {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    color: var(--white);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 24px rgba(29,223,219,0.10);
+  }
+
+  .price-panel p {
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .price-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .price-list li {
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .price-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  section {
+    padding: 110px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .section-head {
+    max-width: 780px;
+    margin-bottom: 60px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    margin: 14px 0 16px;
+    letter-spacing: -0.03em;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 34px;
+  }
+
   .panel.bad { border-top: 3px solid rgba(255,151,77,0.45); }
-  .panel.good { border-top: 3px solid var(--accent); background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,255,255,0)); box-shadow:var(--glow); }
-  .panel ul, .card ul, .feature-card ul { list-style:none; display:grid; gap:12px; margin-top:18px; }
-  .panel li, .card li, .feature-card li { position:relative; padding-left:22px; }
-  .panel.bad li::before { content:"×"; color:var(--accent-2); position:absolute; left:0; }
-  .panel.good li::before, .card li::before, .feature-card li::before { content:"✓"; color:var(--accent); position:absolute; left:0; }
-  .trade-grid, .feature-grid, .summary-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:20px; }
-  .trade-card, .feature-card {
+  .panel.good {
+    border-top: 3px solid var(--accent);
+    background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,255,255,0));
+    box-shadow: var(--glow);
+  }
+
+  .panel h3 {
+    font-size: 1.65rem;
+    margin-bottom: 14px;
+  }
+
+  .panel ul {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .panel li {
+    padding-left: 24px;
+    position: relative;
+    color: var(--text);
+  }
+
+  .panel.bad li::before,
+  .panel.good li::before {
+    position: absolute;
+    left: 0;
+  }
+
+  .panel.bad li::before { content: "×"; color: var(--accent-2); }
+  .panel.good li::before { content: "✓"; color: var(--accent); }
+
+  .trade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .trade-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
-    border:1px solid var(--border); border-radius:16px; padding:28px; position:relative; overflow:hidden;
-    transition:.2s ease;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
-  .trade-card::before, .feature-card::before { content:""; position:absolute; inset:0 0 auto 0; height:3px; background: var(--bar, var(--accent)); opacity:.95; }
-  .trade-card:hover, .feature-card:hover { transform: translateY(-4px); border-color: rgba(29,223,219,0.22); background: linear-gradient(180deg, rgba(29,223,219,0.035), rgba(255,255,255,0)); box-shadow:0 16px 36px rgba(0,0,0,0.24); }
-  .trade-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
-  .trade-tags span, .kicker-tag {
-    border:1px solid rgba(29,223,219,0.14); background: rgba(29,223,219,0.05); color:#b7f8f6;
-    padding:5px 9px; border-radius:6px; font-size:.72rem; font-family:var(--mono);
+
+  .trade-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--bar, var(--accent));
+    opacity: 0.95;
   }
-  .ui-showcase { display:grid; grid-template-columns: 1.02fr .98fr; gap:28px; align-items:start; }
-  .ui-copy { position: sticky; top: 110px; }
-  .ui-stack { display:grid; gap:20px; }
+
+  .trade-card:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(180deg, rgba(29,223,219,0.035), rgba(255,255,255,0));
+    border-color: rgba(29,223,219,0.22);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.24);
+  }
+
+  .trade-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .trade-card p {
+    color: var(--muted);
+    margin-bottom: 18px;
+    min-height: 72px;
+  }
+
+  .trade-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .trade-tags span {
+    border: 1px solid rgba(29,223,219,0.14);
+    background: rgba(29,223,219,0.05);
+    color: #b7f8f6;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-family: var(--mono);
+  }
+
+  .ui-showcase {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .ui-copy {
+    position: sticky;
+    top: 110px;
+  }
+
+  .ui-copy p {
+    max-width: 46ch;
+  }
+
+  .ui-points {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .ui-points li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--text);
+  }
+
+  .ui-points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .ui-stack {
+    display: grid;
+    gap: 20px;
+  }
+
   .ui-shot {
     background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,255,255,0));
-    border:1px solid rgba(29,223,219,0.14); border-radius:18px; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,0.24);
+    border: 1px solid rgba(29,223,219,0.14);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.24);
   }
-  .ui-shot-head { display:flex; justify-content:space-between; gap:12px; padding:14px 16px; border-bottom:1px solid rgba(29,223,219,0.12); background: rgba(4,4,4,0.72); }
-  .ui-shot-label { color:var(--white); font-size:.95rem; font-weight:700; }
-  .ui-shot-tag { border:1px solid rgba(29,223,219,0.16); background: rgba(29,223,219,0.08); color:var(--accent); padding:6px 10px; border-radius:999px; font-size:.68rem; font-family:var(--mono); text-transform:uppercase; }
-  .pricing-band, .support-panel, .form-grid, .contact-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap:24px; }
-  .pricing-main { background: linear-gradient(180deg, rgba(29,223,219,0.08), rgba(255,255,255,0)); border:1px solid rgba(29,223,219,0.24); padding:36px; box-shadow:var(--glow); }
-  .pricing-side { background: linear-gradient(180deg, rgba(255,151,77,0.04), rgba(255,255,255,0)); border:1px solid rgba(255,151,77,0.16); padding:36px; }
-  .pricing-big { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:16px 0 14px; }
-  .pricing-big strong { font-size: clamp(2.6rem, 6vw, 4.4rem); color:var(--white); font-weight:800; letter-spacing:-0.05em; }
-  .pricing-includes { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; }
-  .pricing-includes li { position:relative; padding-left:20px; }
-  .pricing-includes li::before { content:"✓"; position:absolute; left:0; color:var(--accent); }
-  .comparison-wrap { overflow-x:auto; border:1px solid rgba(29,223,219,0.14); background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,255,255,0)); box-shadow:var(--glow); }
-  .comparison-table { width:100%; min-width:760px; border-collapse:collapse; }
-  .comparison-table th, .comparison-table td { padding:18px 20px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; }
-  .comparison-table thead th { font-family:var(--mono); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); background: rgba(4,4,4,0.72); }
-  .comparison-table thead th:last-child { color:var(--accent); }
-  .comparison-table td:first-child { color:var(--white); font-weight:600; width:28%; }
-  .comparison-soft { color:var(--muted); }
-  .comparison-win { color:#b7f8f6; }
-  .support-card { border:1px solid rgba(29,223,219,0.14); padding:28px; background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0)); }
-  .support-card.alt { border-color: rgba(255,151,77,0.16); background: linear-gradient(180deg, rgba(255,151,77,0.04), rgba(255,255,255,0)); }
-  .steps { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:22px; }
-  .step { padding-top:24px; border-top:1px solid rgba(29,223,219,0.12); position:relative; }
-  .step .num { position:absolute; top:-8px; left:0; font-family:var(--mono); font-size:2.4rem; color: rgba(29,223,219,0.16); font-weight:700; }
-  .ownership { background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0)); border:1px solid rgba(29,223,219,0.14); border-radius:20px; padding:48px; box-shadow:var(--glow); }
-  .ownership-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:34px; }
-  .ownership-card { background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0)); border:1px solid rgba(29,223,219,0.12); border-radius:14px; padding:24px; }
-  .ownership-card strong { display:block; font-size:2.1rem; color:var(--white); margin-bottom:8px; }
-  .faq { display:grid; gap:16px; }
-  .faq-item { background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0)); border:1px solid var(--border); padding:24px; }
-  .footer { padding:96px 0 44px; text-align:center; background: linear-gradient(180deg, transparent, rgba(29,223,219,0.03)); }
-  .footer-box { max-width:860px; margin:0 auto; }
-  .footer h2 { font-size: clamp(2.2rem, 4vw, 4rem); margin-bottom:18px; }
-  .footer-lead { font-size:1.1rem; margin-bottom:30px; }
-  .footer-grid { margin-top:46px; padding-top:32px; border-top:1px solid rgba(29,223,219,0.12); display:grid; grid-template-columns:1fr 1fr; gap:24px; text-align:left; }
-  .footer-col h4 { font-family:var(--mono); font-size:.78rem; color:var(--accent); margin-bottom:12px; text-transform:uppercase; letter-spacing:.08em; }
-  .footer-col p, .footer-col a { display:block; color:var(--white); text-decoration:none; margin-bottom:10px; }
-  .footer-legal { margin-top:42px; padding-top:22px; border-top:1px solid rgba(29,223,219,0.12); color:var(--dim); font-size:.85rem; }
-  .page-hero { padding: 82px 0 30px; }
-  .page-hero h1 { max-width: 12ch; }
-  .lede { max-width: 52rem; font-size:1.08rem; }
-  .form-fields { display:grid; gap:14px; }
-  label { display:grid; gap:8px; font-weight:600; color:var(--white); }
-  input, select, textarea {
-    width:100%; background: rgba(255,255,255,0.03); border:1px solid rgba(29,223,219,0.18); color:var(--white);
-    border-radius:10px; padding:14px 16px; font: inherit;
+
+  .ui-shot-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(29,223,219,0.12);
+    background: rgba(4,4,4,0.72);
   }
-  textarea { min-height: 130px; resize: vertical; }
-  .help { color: var(--muted); font-size: .92rem; }
-  .inline-note { margin-top: 14px; color: var(--muted); }
-  .reveal { opacity:0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  .ui-shot-label {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .ui-shot-tag {
+    border: 1px solid rgba(29,223,219,0.16);
+    background: rgba(29,223,219,0.08);
+    color: var(--accent);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .ui-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .pricing-band {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .pricing-main {
+    background: linear-gradient(180deg, rgba(29,223,219,0.08), rgba(255,255,255,0));
+    border: 1px solid rgba(29,223,219,0.24);
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: var(--glow);
+  }
+
+  .pricing-main .mono { color: var(--accent); }
+
+  .pricing-big {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 16px 0 14px;
+    flex-wrap: wrap;
+  }
+
+  .pricing-big strong {
+    font-size: clamp(2.7rem, 6vw, 4.6rem);
+    color: var(--white);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    font-weight: 800;
+    text-shadow: 0 0 24px rgba(29,223,219,0.12);
+  }
+
+  .pricing-big span {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .pricing-meta {
+    color: var(--text);
+    max-width: 48ch;
+    margin-bottom: 20px;
+  }
+
+  .pricing-includes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+    list-style: none;
+  }
+
+  .pricing-includes li {
+    padding-left: 20px;
+    position: relative;
+    color: var(--text);
+  }
+
+  .pricing-includes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .pricing-side {
+    background: linear-gradient(180deg, rgba(255,151,77,0.04), rgba(255,255,255,0));
+    border: 1px solid rgba(255,151,77,0.16);
+    border-radius: 18px;
+    padding: 36px;
+  }
+
+  .pricing-side h3 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+
+  .pricing-side ul {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin: 18px 0 26px;
+  }
+
+  .pricing-side li {
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .pricing-side li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--accent-2);
+  }
+
+  .comparison-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(29,223,219,0.14);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(29,223,219,0.04), rgba(255,255,255,0));
+    box-shadow: var(--glow);
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    vertical-align: top;
+  }
+
+  .comparison-table thead th {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: rgba(4,4,4,0.72);
+  }
+
+  .comparison-table thead th:nth-child(3) {
+    color: var(--accent);
+  }
+
+  .comparison-table tbody tr:hover {
+    background: rgba(29,223,219,0.04);
+  }
+
+  .comparison-table td:first-child {
+    color: var(--white);
+    font-weight: 600;
+    width: 28%;
+  }
+
+  .comparison-soft { color: var(--muted); }
+  .comparison-win { color: #b7f8f6; }
+
+  .support-panel {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 22px;
+  }
+
+  .support-card {
+    border: 1px solid rgba(29,223,219,0.14);
+    border-radius: 18px;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0));
+  }
+
+  .support-card.alt {
+    border-color: rgba(255,151,77,0.16);
+    background: linear-gradient(180deg, rgba(255,151,77,0.04), rgba(255,255,255,0));
+  }
+
+  .support-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .support-card p {
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .support-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .support-list li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--muted);
+  }
+
+  .support-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+  }
+
+  .step {
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(29,223,219,0.12);
+    position: relative;
+  }
+
+  .step .num {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    font-family: var(--mono);
+    font-size: 2.4rem;
+    color: rgba(29,223,219,0.16);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .step h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--white);
+    margin: 18px 0 10px;
+  }
+
+  .step p { color: var(--muted); }
+
+  .ownership {
+    background: linear-gradient(180deg, rgba(29,223,219,0.05), rgba(255,255,255,0));
+    border: 1px solid rgba(29,223,219,0.14);
+    border-radius: 20px;
+    padding: 48px;
+    box-shadow: var(--glow);
+  }
+
+  .ownership h2 { margin-bottom: 18px; }
+
+  .ownership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 34px;
+  }
+
+  .ownership-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
+    border: 1px solid rgba(29,223,219,0.12);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .ownership-card strong {
+    display: block;
+    font-size: 2.1rem;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.04em;
+  }
+
+  .faq {
+    display: grid;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(29,223,219,0.20);
+    transform: translateY(-2px);
+  }
+
+  .faq-item h3 {
+    font-size: 1.18rem;
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    padding: 96px 0 44px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(29,223,219,0.03));
+  }
+
+  .footer-box {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .footer h2 {
+    font-size: clamp(2.3rem, 4vw, 4rem);
+    margin-bottom: 18px;
+  }
+
+  .footer-lead {
+    color: var(--text);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .footer-grid {
+    margin-top: 46px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(29,223,219,0.12);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-col p,
+  .footer-col a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  .footer-legal {
+    margin-top: 42px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(29,223,219,0.12);
+    color: var(--dim);
+    font-size: 0.85rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   @media (max-width: 980px) {
-    .hero-inner, .two-col, .three-col, .ui-showcase, .pricing-band, .support-panel, .form-grid, .contact-grid, .footer-grid, .ownership-grid { grid-template-columns:1fr; }
-    .pricing-includes { grid-template-columns:1fr; }
-    .nav-links { display:none; }
-    section { padding:84px 0; }
-    .hero { min-height:auto; }
-    .hero-logo-wrap { min-height:240px; }
-    .ui-copy { position:static; }
+    .hero-inner,
+    .two-col,
+    .ui-showcase,
+    .pricing-band,
+    .support-panel,
+    .footer-grid,
+    .ownership-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-includes { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    section { padding: 84px 0; }
+    .hero { min-height: auto; }
+    .hero-logo-wrap { min-height: 240px; }
+    .ui-copy { position: static; }
   }
 </style>
 </head>
 <body>
-<nav>
-  <div class="container nav-inner">
-    <a href="index.html" class="brand">
-      <img src="uacbolt.png" alt="Underwood Admin Co logo" class="brand-logo" />
-      <div class="brand-copy">
-        <strong>TradeDesk</strong>
-        <span>by Underwood Admin Co</span>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <img src="assets/td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
+        <div class="brand-copy">
+          <strong>TradeDesk</strong>
+          <span>by Underwood Admin Co</span>
+        </div>
+      </a>
+      <div class="nav-links mono">
+        <a href="#range">Range</a>
+        <a href="#interface">Interface</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#comparison">Value</a>
+        <a href="#process">Process</a>
+        <a href="#ownership">Use Rights</a>
+        <a href="enquiry.html" class="nav-cta">Enquire</a>
       </div>
-    </a>
-    <div class="nav-links mono">
-<a href="index.html">Home</a>
-<a href="overview.html">Overview</a>
-<a href="enquiry.html" class="nav-cta">Enquire</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="reveal visible">
+        <span class="eyebrow mono">Offline-first trade workflow systems</span>
+        <h1>Buy your admin system. Stop renting it.</h1>
+        <p class="hero-lead">TradeDesk is a one-off purchase admin system for sole traders and small operators who are sick of monthly software bills, bloated apps, and cloud dependence. Each system is built from proven trade-domain foundations, then tuned to the way you actually work.</p>
+        <ul class="hero-points">
+          <li>One-off purchase. No subscription drain.</li>
+          <li>Runs locally in-browser with offline capability.</li>
+          <li>Trade-specific workflow logic, not generic SaaS clutter.</li>
+          <li>Direct support contact available for questions and enquiries.</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn-primary" href="#range">Buy a system</a>
+          <a class="btn-secondary" href="overview.html">View showcase</a>
+        </div>
+        <p class="hero-note">One clear base price. No tier maze. No ongoing platform fee.</p>
+      </div>
+
+      <div class="hero-card reveal visible">
+        <div class="hero-logo-wrap">
+          <img src="assets/td-stamp.png" alt="TradeDesk brand mark" class="hero-logo" />
+        </div>
+        <div class="price-panel">
+          <div class="price-kicker mono">Launch price</div>
+          <div class="price-value">AUD $1,450</div>
+          <p>Per delivered TradeDesk system. Best suited to a standard domain build with light business-specific tuning inside the normal scope.</p>
+          <ul class="price-list">
+            <li>No subscription</li>
+            <li>No forced platform lock-in</li>
+            <li>Additional custom work quoted separately</li>
+            <li>Payment cleared before delivery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">Why this exists</div>
+        <h2>Most trade software is a rental bill wearing a dashboard.</h2>
+        <p class="muted">Generic SaaS tools promise convenience, then load you with recurring fees, irrelevant features, and workflows designed for someone else's business. TradeDesk takes the opposite route.</p>
+      </div>
+      <div class="two-col reveal">
+        <div class="panel bad">
+          <h3>The SaaS rental trap</h3>
+          <p class="muted">Built for broad markets. Shaped around recurring revenue. Usually dependent on an account, internet, and ongoing fees.</p>
+          <ul>
+            <li>Monthly cost that never stops</li>
+            <li>Feature bloat you do not need</li>
+            <li>Updates that disrupt your workflow</li>
+            <li>Vendor dependence and cloud reliance</li>
+          </ul>
+        </div>
+        <div class="panel good">
+          <h3>The TradeDesk model</h3>
+          <p class="muted">A delivered working system based on trade-domain logic. Direct, lean, and built to reduce admin friction instead of increasing it.</p>
+          <ul>
+            <li>One-off purchase for the base system</li>
+            <li>Offline-capable local operation</li>
+            <li>Trade-specific workflow structure</li>
+            <li>Outside-scope changes handled by quote, not hidden tiers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="range">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">Current domain foundations</div>
+        <h2>Built from real trade logic, not blank templates.</h2>
+        <p class="muted">These are the current baseline system categories. They are not the limit of the range. TradeDesk can be adapted to other business domains where the admin workflow justifies it.</p>
+
+<div class="grid" style="margin-top:18px">
+  <div class="card">
+    <h3>FlowDesk <span class="mono" style="opacity:.7">v4</span></h3>
+    <p class="muted">Plumbing job management. Quotes → invoices. Local-only storage.</p>
+    <div class="card-actions">
+      <a class="btn-primary" href="skus/flowdesk.html">Buy / Details</a>
+      <a class="btn-secondary" href="apps/FlowDesk-v4-Plumbing.html">Open demo</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>VoltDesk <span class="mono" style="opacity:.7">v4</span></h3>
+    <p class="muted">Electrical workflow. Fast booking, clear scope, clean records.</p>
+    <div class="card-actions">
+      <a class="btn-primary" href="skus/voltdesk.html">Buy / Details</a>
+      <a class="btn-secondary" href="apps/VoltDesk-Electrical-v4.html">Open demo</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>CraftDesk <span class="mono" style="opacity:.7">v4</span></h3>
+    <p class="muted">Carpentry jobs, variations, materials and labour tracking.</p>
+    <div class="card-actions">
+      <a class="btn-primary" href="skus/craftdesk.html">Buy / Details</a>
+      <a class="btn-secondary" href="apps/CraftDesk-Carpentry-v4.html">Open demo</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>MasonDesk <span class="mono" style="opacity:.7">v4</span></h3>
+    <p class="muted">Bricklaying / masonry jobs with trade-specific defaults.</p>
+    <div class="card-actions">
+      <a class="btn-primary" href="skus/masondesk.html">Buy / Details</a>
+      <a class="btn-secondary" href="apps/MasonDesk-Bricklaying-v4.html">Open demo</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>ClimateDesk <span class="mono" style="opacity:.7">v4</span></h3>
+    <p class="muted">Air conditioning workflow. Service calls and installs.</p>
+    <div class="card-actions">
+      <a class="btn-primary" href="skus/climatedesk.html">Buy / Details</a>
+      <a class="btn-secondary" href="apps/ClimateDesk-AirCon-v4.html">Open demo</a>
+    </div>
+  </div>
 </div>
-  </div>
-</nav>
+<p class="note" style="margin-top:14px">Want a different trade, extra modules, or a stricter workflow? Use the enquiry form and specify your domain and requirements.</p>
 
-<header class="hero" id="top">
-  <div class="container hero-inner">
-    <div class="reveal visible">
-      <span class="eyebrow mono">Offline-first trade workflow systems</span>
-      <h1>Buy your admin system. Stop renting it.</h1>
-      <p class="hero-lead">TradeDesk is a one-off purchase admin system for sole traders and small operators who are sick of monthly software bills, bloated apps, and cloud dependence. Built from proven trade-domain foundations. Tuned to how you actually work.</p>
-      <ul class="hero-points">
-        <li>One-off purchase. No subscription drain.</li>
-        <li>Runs locally in-browser with offline capability.</li>
-        <li>Trade-specific workflow logic instead of generic SaaS clutter.</li>
-        <li>Direct support contact available for questions and enquiries.</li>
-      </ul>
-      <div class="cta-row">
-        <a class="btn-primary" href="enquiry.html">Start an enquiry</a>
-        <a class="btn-secondary" href="overview.html">View full overview</a>
-      </div>
-      <p class="inline-note">One clear base price. No tier maze. No ongoing platform fee.</p>
-    </div>
-    <div class="hero-card reveal visible">
-      <div class="hero-logo-wrap">
-        <img src="uacbolt.png" alt="TradeDesk brand mark" class="hero-logo" />
-      </div>
-      <div class="price-panel">
-        <div class="price-kicker mono">Launch price</div>
-        <div class="price-value">AUD $1,450</div>
-        <p>Per delivered TradeDesk system. Best suited to a standard domain build with light business-specific tuning inside the normal scope.</p>
-        <ul class="price-list">
-          <li>No subscription</li>
-          <li>No forced platform lock-in</li>
-          <li>Additional custom work quoted separately</li>
-          <li>Payment cleared before delivery</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</header>
 
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="mono muted">Why this exists</div>
-      <h2>Most trade software is a rental bill wearing a dashboard.</h2>
-      <p class="muted">Generic SaaS tools promise convenience, then bury operators in recurring fees, irrelevant features, and workflows designed for somebody else's business.</p>
-    </div>
-    <div class="two-col reveal">
-      <div class="panel bad">
-        <h3>The SaaS rental trap</h3>
-        <p class="muted">Built for broad markets. Shaped around recurring revenue. Usually dependent on an account, internet, and ongoing fees.</p>
-        <ul>
-          <li>Monthly cost that never stops</li>
-          <li>Feature bloat you do not need</li>
-          <li>Updates that disrupt your workflow</li>
-          <li>Vendor dependence and cloud reliance</li>
-        </ul>
       </div>
-      <div class="panel good">
-        <h3>The TradeDesk model</h3>
-        <p class="muted">A delivered working system based on trade-domain logic. Direct, lean, and built to reduce admin friction instead of increasing it.</p>
-        <ul>
-          <li>One-off purchase for the base system</li>
-          <li>Offline-capable local operation</li>
-          <li>Trade-specific workflow structure</li>
-          <li>Outside-scope changes handled by quote, not hidden tiers</li>
-        </ul>
+
+      <div class="trade-grid reveal">
+        <article class="trade-card" style="--bar:#00c8e8;">
+          <h3>FlowDesk</h3>
+          <p>Plumbing and gasfitting workflow logic for quoting, job flow, call-outs, customer repeat work, and field admin reduction.</p>
+          <div class="trade-tags"><span>PLUMBING</span><span>CALL-OUTS</span><span>FIELD ADMIN</span></div>
+        </article>
+
+        <article class="trade-card" style="--bar:#facc15;">
+          <h3>VoltDesk</h3>
+          <p>Electrical workflow structure built for job records, quoting speed, repeat clients, and structured service administration.</p>
+          <div class="trade-tags"><span>ELECTRICAL</span><span>QUOTING</span><span>TEST LOGIC</span></div>
+        </article>
+
+        <article class="trade-card" style="--bar:#d4a054;">
+          <h3>CraftDesk</h3>
+          <p>Carpentry and joinery job admin designed for staged work, materials thinking, custom work flow, and practical quoting.</p>
+          <div class="trade-tags"><span>CARPENTRY</span><span>JOINERY</span><span>STAGED WORK</span></div>
+        </article>
+
+        <article class="trade-card" style="--bar:#e8774a;">
+          <h3>MasonDesk</h3>
+          <p>Bricklaying and masonry structure for repetitive site work, job tracking, materials visibility, and cleaner production admin.</p>
+          <div class="trade-tags"><span>BRICKLAYING</span><span>MASONRY</span><span>SITE FLOW</span></div>
+        </article>
+
+        <article class="trade-card" style="--bar:#38bdf8;">
+          <h3>ClimateDesk</h3>
+          <p>Air conditioning and HVAC admin logic for installs, servicing, recurring maintenance work, and system-side job records.</p>
+          <div class="trade-tags"><span>HVAC</span><span>SERVICING</span><span>MAINTENANCE</span></div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="mono muted">Current domain foundations</div>
-      <h2>Five current builds. Not the limit of the range.</h2>
-      <p class="muted">TradeDesk currently has working foundations for plumbing, electrical, carpentry, bricklaying, and HVAC. Other domains can be assessed where the workflow fit makes sense.</p>
-    </div>
-    <div class="trade-grid reveal">
-      <article class="trade-card" style="--bar:#00c8e8;"><h3>FlowDesk</h3><p>Plumbing and gasfitting workflow logic for quoting, job flow, call-outs, repeat clients, and field admin reduction.</p><div class="trade-tags"><span>PLUMBING</span><span>CALL-OUTS</span><span>FIELD ADMIN</span></div></article>
-      <article class="trade-card" style="--bar:#facc15;"><h3>VoltDesk</h3><p>Electrical workflow structure built for job records, quoting speed, repeat clients, and structured service administration.</p><div class="trade-tags"><span>ELECTRICAL</span><span>QUOTING</span><span>TEST LOGIC</span></div></article>
-      <article class="trade-card" style="--bar:#d4a054;"><h3>CraftDesk</h3><p>Carpentry and joinery admin designed for staged work, materials thinking, custom work flow, and practical quoting.</p><div class="trade-tags"><span>CARPENTRY</span><span>JOINERY</span><span>STAGED WORK</span></div></article>
-      <article class="trade-card" style="--bar:#e8774a;"><h3>MasonDesk</h3><p>Bricklaying and masonry structure for repetitive site work, job tracking, materials visibility, and cleaner production admin.</p><div class="trade-tags"><span>BRICKLAYING</span><span>MASONRY</span><span>SITE FLOW</span></div></article>
-      <article class="trade-card" style="--bar:#38bdf8;"><h3>ClimateDesk</h3><p>Air conditioning and HVAC admin logic for installs, servicing, recurring maintenance work, and system-side job records.</p><div class="trade-tags"><span>HVAC</span><span>SERVICING</span><span>MAINTENANCE</span></div></article>
-    </div>
-  </div>
-</section>
+  <section id="interface">
+    <div class="container">
+      <div class="ui-showcase reveal">
+        <div class="ui-copy">
+          <div class="mono muted">Product interface</div>
+          <h2>Not a concept. A working system.</h2>
+          <p class="muted">These are real TradeDesk screens from the current build range. The point is not visual fluff. The point is fast readability, structured workflow, and clean job admin with domain-colour logic carried through the UI.</p>
+          <p class="muted" style="margin-top:14px;">Real screenshots from current TradeDesk builds. Domain colours, workflow structure, and feature emphasis vary by trade.</p>
+          <ul class="ui-points">
+            <li>Dark industrial interface with domain-specific colour identity</li>
+            <li>Reports, dashboard, settings, finance, customers, jobs and stock flow</li>
+            <li>Built to feel direct, stable, and practical in day-to-day use</li>
+            <li>Strong enough visually to sell, simple enough operationally to use</li>
+          </ul>
+        </div>
 
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="mono muted">Working interface</div>
-      <h2>Working system screenshots.</h2>
-      <p class="muted">Real screenshots from current TradeDesk builds. Domain colours, workflow structure, and feature emphasis vary by trade.</p>
-    </div>
-    <div class="ui-showcase reveal">
-      <div class="ui-copy">
-        <ul class="tick-list">
-          <li>Dark industrial UI with domain-specific colour identity</li>
-          <li>Reports, dashboard, settings, finance, customers, jobs and stock flow</li>
-          <li>Built to feel direct, stable, and practical in day-to-day use</li>
-          <li>Clear visual structure and practical day-to-day usability</li>
-        </ul>
+        <div class="ui-stack">
+          <article class="ui-shot">
+            <div class="ui-shot-head">
+              <div class="ui-shot-label">ClimateDesk Reports View</div>
+              <div class="ui-shot-tag">Air Conditioning</div>
+            </div>
+            <img src="Screenshot 2026-02-28 3.42.59 PM.png" alt="TradeDesk Air Conditioning reports interface" />
+          </article>
+
+          <article class="ui-shot">
+            <div class="ui-shot-head">
+              <div class="ui-shot-label">VoltDesk Dashboard View</div>
+              <div class="ui-shot-tag">Electrical</div>
+            </div>
+            <img src="Screenshot 2026-02-28 3.42.45 PM.png" alt="TradeDesk Electrical dashboard interface" />
+          </article>
+
+          <article class="ui-shot">
+            <div class="ui-shot-head">
+              <div class="ui-shot-label">VoltDesk Settings View</div>
+              <div class="ui-shot-tag">Electrical</div>
+            </div>
+            <img src="Screenshot 2026-02-28 3.42.38 PM.png" alt="TradeDesk Electrical settings interface" />
+          </article>
+        </div>
       </div>
-      <div class="ui-stack">
-        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">ClimateDesk Reports View</div><div class="ui-shot-tag">Air Conditioning</div></div><img src="Screenshot 2026-02-28 3.42.59 PM.png" alt="TradeDesk Air Conditioning reports interface" /></article>
-        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">VoltDesk Dashboard View</div><div class="ui-shot-tag">Electrical</div></div><img src="Screenshot 2026-02-28 3.42.45 PM.png" alt="TradeDesk Electrical dashboard interface" /></article>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">Pricing position</div>
+        <h2>Simple pricing. Clear value.</h2>
+        <p class="muted">TradeDesk is priced to be reachable for sole traders while still reflecting real product value. One clear price. No subscription. No tier confusion.</p>
+      </div>
+
+      <div class="pricing-band reveal">
+        <div class="pricing-main">
+          <div class="mono">Base system price</div>
+          <div class="pricing-big">
+            <strong>AUD $1,450</strong>
+            <span>per TradeDesk system</span>
+          </div>
+          <p class="pricing-meta">A strong launch price for operators who want to own their admin system without stepping into another monthly bill.</p>
+          <ul class="pricing-includes">
+            <li>One trade-domain baseline system</li>
+            <li>Light business-specific tuning within normal scope</li>
+            <li>Delivered as a working local system file</li>
+            <li>No subscription attached</li>
+            <li>No tier ladder</li>
+            <li>Ongoing support contact available for enquiries</li>
+          </ul>
+        </div>
+
+        <aside class="pricing-side">
+          <h3>Scope boundary</h3>
+          <p class="muted">The base price covers the standard delivered system. Additional custom work is quoted separately when required.</p>
+          <ul>
+            <li>Outside-scope customisation: quote separately</li>
+            <li>Optional hourly fallback: AUD $150/hr</li>
+            <li>Payment: full payment before delivery</li>
+            <li>Further development: by request only</li>
+            <li>General support and enquiries welcome after purchase</li>
+          </ul>
+          <a class="btn-secondary" href="mailto:Kalebwalding17@gmail.com?subject=TradeDesk%20Pricing%20Enquiry">Enquire on fit and scope</a>
+        </aside>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="mono muted">Value comparison</div>
-      <h2>Owning your admin tool beats feeding a subscription.</h2>
-      <p class="muted">TradeDesk offers a simpler cost structure, direct support contact, and a workflow built for practical field use.</p>
-    </div>
-    <div class="comparison-wrap reveal">
-      <table class="comparison-table">
-        <thead><tr><th>Comparison point</th><th>Typical SaaS rental software</th><th>TradeDesk</th></tr></thead>
-        <tbody>
-          <tr><td>Payment model</td><td class="comparison-soft">Ongoing monthly or annual fee</td><td class="comparison-win">One-off base purchase</td></tr>
-          <tr><td>Cost direction over time</td><td class="comparison-soft">Keeps charging as long as you use it</td><td class="comparison-win">Base cost paid once, extra work only if requested</td></tr>
-          <tr><td>Workflow fit</td><td class="comparison-soft">Built for broad user groups</td><td class="comparison-win">Built from trade-domain logic and tuned to fit</td></tr>
-          <tr><td>Offline usability</td><td class="comparison-soft">Often reduced or dependent on cloud access</td><td class="comparison-win">Offline-capable local operating model</td></tr>
-          <tr><td>Support position</td><td class="comparison-soft">Ticket queue or tier-gated contact</td><td class="comparison-win">Direct contact for support enquiries and follow-up questions</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="support-panel reveal" style="margin-top:26px;">
-      <div class="support-card"><div class="mono muted">Support & enquiries</div><h3>Direct support contact.</h3><p>After delivery, buyers can still reach out with questions, support enquiries, and practical issues using direct contact.</p></div>
-      <div class="support-card alt"><div class="mono muted">Boundary</div><h3>Clear support scope.</h3><p>Support is available for questions and issue discussion. New features, deeper changes, or extra custom work are quoted separately.</p></div>
-    </div>
-  </div>
-</section>
+  <section id="comparison">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">Value comparison</div>
+        <h2>Owning your admin tool beats feeding a subscription.</h2>
+        <p class="muted">TradeDesk gives buyers a simpler cost structure, direct contact, and a system built around practical field workflow instead of subscription lock-in.</p>
+      </div>
 
-<footer class="footer">
-  <div class="container footer-box reveal visible">
-    <div class="mono muted">TradeDesk by Underwood Admin Co</div>
-    <h2>Own the tool. Cut the rent.</h2>
-    <p class="footer-lead">One-off purchase, direct support contact, and additional development available by request.</p>
-    <div class="cta-row" style="justify-content:center;">
-      <a class="btn-primary" href="enquiry.html">Start your enquiry</a>
-      <a class="btn-secondary" href="overview.html">Read the full overview</a>
-    </div>
-    <div class="footer-grid">
-      <div class="footer-col"><h4>Direct contact</h4><p>Kaleb J. Walding</p><a href="mailto:Kalebwalding17@gmail.com">Kalebwalding17@gmail.com</a><a href="tel:+61403220727">0403 220 727</a></div>
-      <div class="footer-col"><h4>Business details</h4><p>Underwood Water Services</p><p>Underwood Admin Co is a division of Underwood Water Services</p><p>ABN 77 529 724 527</p><p>Rhynie, South Australia 5412</p></div>
-    </div>
-    <div class="footer-legal"><p>© 2026 Underwood Water Services. TradeDesk is an administrative software product range.</p><p>Use remains subject to the applicable TradeDesk legal terms. No statement on this page should be read as legal, tax, or accounting advice.</p></div>
-  </div>
-</footer>
+      <div class="comparison-wrap reveal">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Comparison point</th>
+              <th>Typical SaaS rental software</th>
+              <th>TradeDesk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Payment model</td>
+              <td class="comparison-soft">Ongoing monthly or annual fee</td>
+              <td class="comparison-win">One-off base purchase</td>
+            </tr>
+            <tr>
+              <td>Cost direction over time</td>
+              <td class="comparison-soft">Keeps charging as long as you use it</td>
+              <td class="comparison-win">Base cost paid once, extra work only if requested</td>
+            </tr>
+            <tr>
+              <td>Workflow fit</td>
+              <td class="comparison-soft">Built for broad user groups</td>
+              <td class="comparison-win">Built from trade-domain logic and tuned to fit</td>
+            </tr>
+            <tr>
+              <td>Offline usability</td>
+              <td class="comparison-soft">Often reduced or dependent on cloud access</td>
+              <td class="comparison-win">Offline-capable local operating model</td>
+            </tr>
+            <tr>
+              <td>Feature load</td>
+              <td class="comparison-soft">Bloated with tools you may never use</td>
+              <td class="comparison-win">Focused on the workflow you actually need</td>
+            </tr>
+            <tr>
+              <td>Platform lock-in</td>
+              <td class="comparison-soft">High. Leave and the tool disappears</td>
+              <td class="comparison-win">Use your delivered system without ongoing platform rent</td>
+            </tr>
+            <tr>
+              <td>Support position</td>
+              <td class="comparison-soft">Ticket queue or tier-gated contact</td>
+              <td class="comparison-win">Direct contact for support enquiries and follow-up questions</td>
+            </tr>
+            <tr>
+              <td>Custom changes</td>
+              <td class="comparison-soft">Often gated behind plans, add-ons, or not offered</td>
+              <td class="comparison-win">Quoted separately when outside base scope</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <div class="support-panel reveal">
+        <div class="support-card">
+          <div class="mono muted">Support & enquiries</div>
+          <h3>Support stays human.</h3>
+          <p>After delivery, buyers can still reach out with questions, support enquiries, and practical issues using direct contact.</p>
+          <ul class="support-list">
+            <li>General product enquiries welcome</li>
+            <li>Post-purchase support contact available</li>
+            <li>Further upgrades or changes handled separately if needed</li>
+          </ul>
+        </div>
+
+        <div class="support-card alt">
+          <div class="mono muted">Custom work</div>
+          <h3>Support is not unlimited development.</h3>
+          <p>Support is available for questions and issue discussion. New features, deeper changes, or extra custom work are quoted separately.</p>
+          <ul class="support-list">
+            <li>Questions and guidance: yes</li>
+            <li>Bug or issue discussion: yes</li>
+            <li>New custom feature work: quoted separately</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">Acquisition path</div>
+        <h2>No app store circus. No tier maze. No fluff.</h2>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Choose the closest domain</h3>
+          <p>Start from the trade foundation that best matches your workflow.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Explain how you operate</h3>
+          <p>Outline your services, job flow, bottlenecks, and required admin behaviour.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Confirm fit and scope</h3>
+          <p>You get a direct view of what fits inside the base system and what does not.</p>
+        </div>
+        <div class="step">
+          <div class="num">04</div>
+          <h3>Pay once</h3>
+          <p>Single transaction for the agreed delivered system. No ongoing platform fee.</p>
+        </div>
+        <div class="step">
+          <div class="num">05</div>
+          <h3>Receive the system</h3>
+          <p>The system is delivered for your internal business use and can be run locally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ownership">
+    <div class="container">
+      <div class="ownership reveal">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="mono muted">Use rights and commercial position</div>
+          <h2>Sell the offer hard. Keep the legal position clean.</h2>
+          <p class="muted">TradeDesk is sold as a one-off delivered system for internal business use. Your data remains with you. General support contact is available. Further development remains separate work.</p>
+        </div>
+
+        <div class="ownership-grid">
+          <div class="ownership-card">
+            <strong>$0</strong>
+            <p class="muted">Monthly platform fee</p>
+          </div>
+          <div class="ownership-card">
+            <strong>100%</strong>
+            <p class="muted">Offline-capable operating model</p>
+          </div>
+          <div class="ownership-card">
+            <strong>1x</strong>
+            <p class="muted">One-off base purchase event</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="mono muted">FAQ</div>
+        <h2>The obvious questions, answered fast.</h2>
+      </div>
+
+      <div class="faq reveal">
+        <div class="faq-item">
+          <h3>Is TradeDesk limited to the five current trades?</h3>
+          <p class="muted">No. Those are the current baseline foundations. Additional business domains can be assessed where the workflow and product fit make sense.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I pay monthly?</h3>
+          <p class="muted">No. The base public offer is a one-off purchase price for the system. Additional custom work is quoted separately if required.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I contact you after purchase?</h3>
+          <p class="muted">Yes. General support questions and enquiries are welcome. New custom feature work or significant changes are quoted separately.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does this replace accounting, legal, or tax advice?</h3>
+          <p class="muted">No. TradeDesk is an administrative workflow tool. It is not legal, tax, or accounting advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-box reveal visible">
+      <div class="mono muted">TradeDesk by Underwood Admin Co</div>
+      <h2>Stop bleeding money into software rent.</h2>
+      <p class="footer-lead">Own the system, skip the subscription, and still have direct support contact if you need help or have questions.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a class="btn-primary" href="mailto:Kalebwalding17@gmail.com?subject=TradeDesk%20Enquiry">Start your enquiry</a>
+        <a class="btn-secondary" href="mailto:Kalebwalding17@gmail.com?subject=TradeDesk%20Support%20Enquiry">Support or product question</a>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Direct contact</h4>
+          <p>Kaleb J. Walding</p>
+          <a href="mailto:Kalebwalding17@gmail.com">Kalebwalding17@gmail.com</a>
+          <a href="tel:+61403220727">0403 220 727</a>
+        </div>
+        <div class="footer-col">
+          <h4>Business details</h4>
+          <p>Underwood Water Services</p>
+          <p>Underwood Admin Co is a division of Underwood Water Services</p>
+          <p>ABN 77 529 724 527</p>
+          <p>Rhynie, South Australia 5412</p>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <p>© 2026 Underwood Water Services. TradeDesk is an administrative software product range.</p>
+        <p>Use remains subject to the applicable TradeDesk legal terms. No statement on this page should be read as legal, tax, or accounting advice.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const observer = new IntersectionObserver((entries, obs) => {
@@ -392,11 +1402,10 @@
         }
       });
     }, { threshold: 0.14 });
+
     document.querySelectorAll('.reveal').forEach(el => {
       if (!el.classList.contains('visible')) observer.observe(el);
     });
   </script>
-
-
 </body>
 </html>
