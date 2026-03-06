@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>TradeDesk Enquiry — Underwood Admin Co</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,8 +25,8 @@
     --accent-2: #ff974d;
     --shadow: 0 18px 40px rgba(0,0,0,0.35);
     --glow: 0 0 0 1px rgba(29,223,219,0.08), 0 0 40px rgba(29,223,219,0.08);
-    --font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
-    --head: Georgia, "Times New Roman", serif;
+    --font: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --head: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
     --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
   }
   html { scroll-behavior: smooth; }
@@ -216,11 +219,11 @@
 </style>
 </head>
 <body>
-<a href="index.html" style="position:fixed;top:14px;left:14px;z-index:9999;padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);text-decoration:none;color:#f3f3f3;font:600 12px system-ui">← Back to TradeDesk</a>>
+<a href="index.html" style="position:fixed;top:14px;left:14px;z-index:9999;padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);text-decoration:none;color:#f3f3f3;font:600 12px system-ui">← Back to TradeDesk • $450 AUD per system • No GST.</a>
 <nav>
   <div class="container nav-inner">
     <a href="index.html" class="brand">
-      <img src="assets/td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
+      <img src="td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
       <div class="brand-copy">
         <strong>TradeDesk</strong>
         <span>by Underwood Admin Co</span>
@@ -238,8 +241,8 @@
   <div class="container">
     <div class="section-head reveal visible">
       <div class="mono muted">Enquiry</div>
-      <h1>Tell me how you work.</h1>
-      <p class="lede muted">Use this form to send a direct enquiry about TradeDesk. Provide a few business details and what you need the system to handle.</p>
+      <h1>Tell me what you want to stop paying for.</h1>
+      <p class="lede muted">TradeDesk is for operators who want to own their software, cut admin clutter, and stop paying monthly for basic business workflow. Fill this out and send it straight through.</p>
     </div>
   </div>
 </section>
@@ -249,7 +252,7 @@
     <div class="enquiry-card reveal visible">
       <div class="mono muted">Lead details</div>
       <h2 style="margin:12px 0 16px;">Send an enquiry</h2>
-      <p class="muted" style="margin-bottom:20px;">Fill out the form below and it will open your email app with a drafted message, ready to send.</p>
+      <p class="muted" style="margin-bottom:20px;">Fill this out and it will open a drafted email. Keep it direct. Tell me what your current setup is costing you in time, money, or head noise.</p>
       <form id="enquiryForm" class="form-fields">
 <!-- TD_PREFILL_FIELDS -->
 <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px">
@@ -278,10 +281,10 @@
     <input name="state" id="state" placeholder="e.g., SA, VIC, NSW" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
   </div>
   <div style="grid-column:span 6">
-    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">Business name</label>
-    <input name="business" id="business" placeholder="" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
+    <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">ABN (optional)</label>
+    <input name="abn" id="abn" placeholder="" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
   </div>
-  <div style="grid-column:span 6">
+  <div style="display:none">
     <label style="display:block;font-size:12px;opacity:.8;margin-bottom:6px">ABN (optional)</label>
     <input name="abn" id="abn" placeholder="" style="width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#f3f3f3" />
   </div>
@@ -326,7 +329,7 @@
         <li>What you want automated or cleaned up</li>
         <li>The type of system you want</li>
       </ul>
-      <p class="inline-note">Standard TradeDesk systems start from <strong style="color:var(--white);">AUD $1,450</strong>.</p>
+      <p class="inline-note">Early adopter pricing is locked at <strong style="color:var(--white);">AUD $450</strong> per system. No GST added because Underwood Water Services is not GST registered.</p>
     </div>
   </div>
 </section>
@@ -340,8 +343,8 @@
     <div class="steps reveal">
       <div class="step"><div class="num">01</div><h3>You send the enquiry</h3><p>Send through your trade, current admin setup, and what you want the system to do.</p></div>
       <div class="step"><div class="num">02</div><h3>Initial review</h3><p>Your enquiry is reviewed and the best next step is identified.</p></div>
-      <div class="step"><div class="num">03</div><h3>Pricing and scope</h3><p>If needed, pricing and any custom scope are clarified before anything moves ahead.</p></div>
-      <div class="step"><div class="num">04</div><h3>Delivery</h3><p>Once confirmed, your system is prepared and delivered for your business use.</p></div>
+      <div class="step"><div class="num">03</div><h3>Price and fit</h3><p>If needed, pricing and any custom scope are clarified before anything moves ahead.</p></div>
+      <div class="step"><div class="num">04</div><h3>Delivery</h3><p>Once confirmed, your system is delivered ready to run.</p></div>
     </div>
   </div>
 </section>
@@ -422,7 +425,11 @@ ${data.get('budget') || ''}`);
       '- Email: ' + v('email'),
       '',
       'Notes / requirements:',
-      v('message'),
+      [
+        'Pain / friction:', v('pain'), '',
+        'Needs:', v('needs'), '',
+        'Budget:', v('budget')
+      ].join('\n'),
       '',
       '----',
       'Sent from the TradeDesk enquiry page'

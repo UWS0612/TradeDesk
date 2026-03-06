@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>TradeDesk Overview — Underwood Admin Co</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,8 +25,8 @@
     --accent-2: #ff974d;
     --shadow: 0 18px 40px rgba(0,0,0,0.35);
     --glow: 0 0 0 1px rgba(29,223,219,0.08), 0 0 40px rgba(29,223,219,0.08);
-    --font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
-    --head: Georgia, "Times New Roman", serif;
+    --font: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --head: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
     --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
   }
   html { scroll-behavior: smooth; }
@@ -212,11 +215,16 @@
 </style>
 </head>
 <body>
-<a href="index.html" style="position:fixed;top:14px;left:14px;z-index:9999;padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);text-decoration:none;color:#f3f3f3;font:600 12px system-ui">← Back to TradeDesk</a>>
+<div style="max-width:1100px;margin:18px auto 0;padding:0 18px">
+  <div style="border:1px solid rgba(255,255,255,.10);border-radius:18px;overflow:hidden;background:rgba(0,0,0,.35)">
+    <img src="td-full.png" alt="TradeDesk" style="width:100%;height:auto;display:block"/>
+  </div>
+</div>
+<a href="index.html" style="position:fixed;top:14px;left:14px;z-index:9999;padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);text-decoration:none;color:#f3f3f3;font:600 12px system-ui">← Back to TradeDesk</a>
 <nav>
   <div class="container nav-inner">
     <a href="index.html" class="brand">
-      <img src="assets/td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
+      <img src="td-stamp.png" alt="Underwood Admin Co logo" class="brand-logo" />
       <div class="brand-copy">
         <strong>TradeDesk</strong>
         <span>by Underwood Admin Co</span>
@@ -235,7 +243,7 @@
     <div class="section-head reveal visible">
       <div class="mono muted">Overview</div>
       <h1>TradeDesk overview.</h1>
-      <p class="lede muted">TradeDesk is an administrative workflow system for sole traders and small operators who want cleaner quoting, job flow, customer records, reporting, and day-to-day business admin in one place.</p>
+      <p class="lede muted">TradeDesk is built for operators who want quotes, invoices, customers, jobs and reporting in one clean system they actually own. No recurring software rent. No bloated SaaS stack.</p>
       <div class="cta-row" style="margin-top:26px;">
         <a class="btn-primary" href="enquiry.html">Start your enquiry</a>
         <a class="btn-secondary" href="index.html">Back to home</a>
@@ -247,7 +255,7 @@
 <section>
   <div class="container">
     <div class="three-col reveal">
-      <div class="card"><div class="mono muted">Core model</div><h3>One-off purchase</h3><ul><li>No ongoing platform fee</li><li>No tier ladder</li><li>No recurring seat pricing</li></ul></div>
+      <div class="card"><div class="mono muted">Core model</div><h3>Own the software</h3><ul><li>No monthly software fee</li><li>No seat-based upsell</li><li>No subscription creep</li></ul></div>
       <div class="card"><div class="mono muted">Operating model</div><h3>Offline-capable local use</h3><ul><li>Runs locally in browser</li><li>Useful where cloud dependence is a pain</li><li>Cleaner control over day-to-day usage</li></ul></div>
       <div class="card"><div class="mono muted">Support position</div><h3>Ongoing support</h3><ul><li>Direct support available</li><li>Straightforward issue handling</li><li>Extra feature work is separately quoted</li></ul></div>
     </div>
@@ -289,9 +297,9 @@
         </ul>
       </div>
       <div class="ui-stack">
-        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">ClimateDesk Reports View</div><div class="ui-shot-tag">Air Conditioning</div></div><img src="Screenshot 2026-02-28 3.42.59 PM.png" alt="TradeDesk reports interface" /></article>
-        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">VoltDesk Dashboard View</div><div class="ui-shot-tag">Electrical</div></div><img src="Screenshot 2026-02-28 3.42.45 PM.png" alt="TradeDesk dashboard interface" /></article>
-        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">VoltDesk Settings View</div><div class="ui-shot-tag">Electrical</div></div><img src="Screenshot 2026-02-28 3.42.38 PM.png" alt="TradeDesk settings interface" /></article>
+        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">FlowDesk Dashboard</div><div class="ui-shot-tag">Plumbing</div></div><img src="Screenshot 2026-03-07 8.19.06 AM.png" alt="FlowDesk dashboard" /></article>
+        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">Customer Profile</div><div class="ui-shot-tag">Plumbing</div></div><img src="Screenshot 2026-03-07 8.21.09 AM.png" alt="FlowDesk customer profile" /></article>
+        <article class="ui-shot"><div class="ui-shot-head"><div class="ui-shot-label">Quote Builder</div><div class="ui-shot-tag">Plumbing</div></div><img src="Screenshot 2026-03-07 8.22.52 AM.png" alt="FlowDesk quote builder" /></article>
       </div>
     </div>
   </div>
@@ -301,21 +309,21 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="mono muted">Pricing and scope</div>
-      <h2>Pricing and scope.</h2>
-      <p class="muted">TradeDesk is offered at a fixed base price, with additional custom work quoted separately where required.</p>
+      <h2>$450 early adopter pricing.</h2>
+      <p class="muted">The base offer is locked at $450 AUD per system for early adopters. It is designed to make switching simple and remove ongoing software rent from the business.</p>
     </div>
     <div class="pricing-band reveal">
       <div class="pricing-main">
         <div class="mono">Base system price</div>
         <div class="pricing-big"><strong>AUD $450</strong><span>per TradeDesk system</span></div>
-        <p class="muted">Suited to a standard domain build with light business-specific tuning within normal scope.</p>
+        <p class="muted">Best suited to a standard trade-domain build with light business-specific tuning inside normal scope.</p>
         <ul class="pricing-includes">
           <li>One trade-domain baseline system</li>
           <li>Light business-specific tuning within normal scope</li>
           <li>Delivered as a working local system file</li>
-          <li>No subscription attached</li>
+          <li>No monthly subscription attached</li>
           <li>Direct contact for support enquiries</li>
-          <li>No tier maze</li>
+          <li>Cleaner workflow with less admin drag</li>
         </ul>
       </div>
       <div class="pricing-side">
@@ -326,7 +334,7 @@
           <li>Extra design or business-specific build requests</li>
           <li>Further development quoted separately</li>
         </ul>
-        <p class="inline-note">Optional hourly fallback: AUD $150/hr where needed. Full payment before delivery.</p>
+        <p class="inline-note">Additional custom work is quoted separately. Full payment before delivery.</p>
       </div>
     </div>
   </div>
@@ -342,7 +350,7 @@
       <div class="faq-item"><h3>Is TradeDesk limited to the five current trades?</h3><p class="muted">No. Those are the current baseline foundations. Additional domains can be assessed where the workflow fit is strong enough.</p></div>
       <div class="faq-item"><h3>Can I contact you after purchase?</h3><p class="muted">Yes. General support questions and enquiries are welcome. Significant extra work is quoted separately.</p></div>
       <div class="faq-item"><h3>Does this replace legal, tax, or accounting advice?</h3><p class="muted">No. TradeDesk is an administrative workflow tool. It does not replace professional advice.</p></div>
-      <div class="faq-item"><h3>Do I pay monthly?</h3><p class="muted">No. The public offer is a one-off base system purchase price.</p></div>
+      <div class="faq-item"><h3>Do I pay monthly?</h3><p class="muted">No. The public offer is a one-off purchase. Own your software and stop renting the core admin stack.</p></div>
     </div>
   </div>
 </section>
